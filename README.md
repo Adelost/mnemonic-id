@@ -5,11 +5,15 @@ Library to generate easy to remember and sometimes entertaining human readable i
 Inspired by major mnemonic system:
 https://en.wikipedia.org/wiki/Mnemonic_major_system 
 
+## Examples
+
 ### random(), randomWithAdjectives(count = 2)
+
+This is the 
 
 ```
 hot-splendid-duck
-terrible-fluffy-emu
+spicy-new-skunk
 ancient-sour-fish
 wicked-mean-rattlesnake
 ```
@@ -35,9 +39,9 @@ love-pretty-sheep
 ### random10()
 
 ```
+fluffy-dragon-fly-nervous-pug
 neat-warthog-erase-evil-rat
 modern-fox-lull-shy-dog
-fluffy-dragon-fly-nervous-pug
 cuddly-bird-defy-moody-badger
 ```
 
@@ -58,3 +62,7 @@ strange-fly-lXqo
 chatty-frog-FspT
 gentle-lion-f9uU
 ```
+
+## License
+
+Licensed under MIT.

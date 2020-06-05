@@ -2,38 +2,83 @@ const verbs = require('./dictionary/verbs');
 const animals = require('./dictionary/animals');
 const adjectives = require('./dictionary/adjectives');
 
-exports.random = function () {
-  return exports.randomWithAdjectives(2);
+exports.random = function (opts = {}) {
+  opts = {
+    adj: 2,
+    subject: true,
+    ...opts
+  };
+  return random(opts);
 };
 
-exports.randomWithAdjectives = function (count = 2) {
-  return describeAnimal(count);
+exports.random4 = function (opts = {}) {
+  opts = {
+    adj: 1,
+    subject: true,
+    ...opts
+  };
+  return random(opts);
 };
 
-exports.randomWithNumbers = function (count = 2) {
-  const start = 10 ** (count - 1);
-  const end = 10 ** count;
-  return `${describeAnimal()}-${randomInt(start, end)}`;
+exports.random6 = function (opts = {}) {
+  opts = {
+    adj: 1,
+    verb: true,
+    object: true,
+    ...opts
+  };
+  return random(opts);
 };
 
-exports.randomWithShortId = function (count = 4) {
-  return `${describeAnimal()}-${exports.randomShortId(count)}`;
+exports.random10 = function (opts = {}) {
+  opts = {
+    adj: 2,
+    subject: true,
+    verb: true,
+    object: true,
+    ...opts
+  };
+  return random(opts);
 };
 
-exports.random4 = function () {
-  return `${describeAnimal()}`;
-};
+function random(opts = {}) {
+  opts = {
+    adj: 0,
+    subject: false,
+    verb: false,
+    object: false,
+    delimiter: '-',
+    numbers: 0,
+    ids: 0,
+    ...opts
+  };
+  let parts = [];
+  if (opts.subject) {
+    for (let i = 0; i < opts.adj; i += 1) {
+      parts.push(randomFromList(adjectives));
+    }
+    parts.push(randomFromList(animals));
+  }
+  if (opts.verb) {
+    parts.push(randomFromList(verbs));
+  }
+  if (opts.object) {
+    parts.push(random({ adj: opts.adj, subject: true, }));
+  }
+  if (opts.numbers) {
+    const start = 10 ** (opts.numbers - 1);
+    const end = 10 ** opts.numbers;
+    const numbers = randomInt(start, end);
+    parts.push(numbers);
+  }
+  if (opts.ids) {
+    const id = exports.randomId(opts.ids);
+    parts.push(id);
+  }
+  return parts.join(opts.delimiter);
+}
 
-exports.random6 = function () {
-  return `${randomFromList(verbs)}-${describeAnimal()}`;
-};
-
-exports.random10 = function () {
-  const verb = randomFromList(verbs);
-  return `${describeAnimal()}-${verb}-${describeAnimal()}`;
-};
-
-exports.randomShortId = function (length) {
+exports.randomId = function (length) {
   const choices = 'ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz0123456789';
   let out = '';
   for (let i = 0; i < length; i += 1) {
@@ -43,15 +88,6 @@ exports.randomShortId = function (length) {
   return out;
 };
 
-function describeAnimal(count = 1) {
-  let animal = randomFromList(animals);
-  for (let i = 0; i < count; i += 1) {
-    const adjective = randomFromList(adjectives);
-    animal = `${adjective}-${animal}`
-  }
-  return animal;
-}
-
 function randomFromList(list) {
   return list[randomInt(0, list.length)];
 }
@@ -59,8 +95,6 @@ function randomFromList(list) {
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
-
-
 
 
 

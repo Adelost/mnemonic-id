@@ -1,14 +1,18 @@
-module.exports = `
+export default `
 achieve
 align
 amuse
+ask
 assess
 assign
 assume
 ban
+become
+believe
 bite
 bomb
 bury
+call
 carry
 chain
 chase
@@ -20,17 +24,20 @@ coach
 comb
 cook
 copy
+create
 defy
 draw
 edit
 enjoy
 envy
 erase
+expect
 fake
 fetch
 fight
 find
 fly
+follow
 fry
 fume
 fuse
@@ -45,9 +52,10 @@ kiss
 lick
 lose
 love
-lure
 lull
+lure
 mail
+make
 marry
 meet
 mock
@@ -57,13 +65,18 @@ oppose
 patch
 poke
 pop
+provide
+pull
 quote
-read
 reach
+read
 ruin
 rule
 save
+see
 sell
+send
+serve
 soak
 swat
 switch
@@ -71,8 +84,13 @@ take
 teach
 tease
 tell
+try
 unite
+use
 weaken
 widen
+win
 wrap
-`.trim().split(/\s+/);
+`
+  .trim()
+  .split(/\s+/);

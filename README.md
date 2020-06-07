@@ -8,11 +8,11 @@ https://en.wikipedia.org/wiki/Mnemonic_major_system
 
 ## Examples
 
-### getId()
+### getName()
 
 ≈ 10^6 permutations
 
-This default setting aims to strike a good balance between  conciseness and number of permutation.
+Generates ids that strike a balance between conciseness and number of permutation.
 
 Output:
 ```
@@ -22,11 +22,11 @@ ancient-sour-fish
 wicked-mean-rattlesnake
 ```
 
-### getId4(
+### getShortName()
 
 ≈ 10^4 permutations
 
-Concise ids for when only a small number of instances is needed.
+Generates concise ids for when only a small number of instances is needed.
 
 Output:
 ```
@@ -36,11 +36,11 @@ happy-eagle
 giant-turkey
 ```
 
-### getId6()
+### getAction()
 
-≈ 10^6 permutations
+≈ 10^6 permutationsW
 
-Alternative to default `getId()`.
+Generates action-oriented ids.
 
 Output:
 ```
@@ -50,11 +50,11 @@ bury-old-walrus
 love-pretty-sheep
 ```
 
-### getId10()
+### getStory()
 
 ≈ 10^10 permutations
 
-Alternative to default `getId()`.
+Generates story-oriented ids.
 
 Output:
 ```
@@ -64,12 +64,12 @@ modern-fox-lull-shy-dog
 cuddly-bird-defy-moody-badger
 ```
 
-### getId({...})
+### getCustom({...})
 
 If neither of the predefined formats fits your use case, 
 the output is fully customizable through the `options` parameter:
 ```
-getId({
+getCustom({
       adj: 2,
       subject: true,
       verb: true,
@@ -79,6 +79,7 @@ getId({
       numberSuffix: 4,
     })
 );
+
 ```
 Output:
 ```
@@ -87,6 +88,8 @@ orange_spicy_horse_bite_tiny_calm_liger_NvnhdC_1669
 nasty_big_rabbit_lick_fresh_cold_ape_lPz4kC_8196
 fresh_wicked_lizard_chain_horrible_sour_fox_rKTiYL_3454
 ```
+
+The `options` object can also be used with any other method to override default behavior. 
 
 ## License
 

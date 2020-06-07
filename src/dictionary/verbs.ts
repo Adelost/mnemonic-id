@@ -1,4 +1,4 @@
-module.exports = `
+export default `
 achieve
 align
 amuse
@@ -91,4 +91,6 @@ weaken
 widen
 win
 wrap
-`.trim().split(/\s+/);
+`
+  .trim()
+  .split(/\s+/);

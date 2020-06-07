@@ -1,4 +1,4 @@
-module.exports = `
+export default `
 afraid
 ancient
 angry
@@ -130,4 +130,6 @@ witty
 wonderful
 yellow
 young
-`.trim().split(/\s+/);
+`
+  .trim()
+  .split(/\s+/);

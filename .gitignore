@@ -1,1 +1,19 @@
-.idea
+# NodeJs
+node_modules/
+dist/
+dist-minified/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+
+# Project
+tmp/
+.local/
+
+# Optional
+# By standard package-lock should be commited but feel free to
+# ignore lock file if you do not require version locking and
+# want to avoid noise in your commit diffs.
+# package-lock.json

@@ -33,7 +33,8 @@
     "lint": "eslint ./src --ext ts  && npm run format-check",
     "lint-fix": "npm run format && eslint ./src --ext ts --fix",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run lint"
+    "prepublishOnly": "npm run lint",
+    "postversion" : "git push && git push --tags"
   },
   "devDependencies": {
     "@types/jest": "25.2.3",

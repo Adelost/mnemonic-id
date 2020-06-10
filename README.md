@@ -1,6 +1,6 @@
 # Mnemonic id
 
-Library to generate easy to remember and sometimes entertaining human readable ids.
+Library to generate easy to remember, and sometimes entertaining, human readable ids.
 
 Inspired by major mnemonic system:
 https://en.wikipedia.org/wiki/Mnemonic_major_system

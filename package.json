@@ -4,7 +4,7 @@
   "version": "0.5.0",
   "license": "MIT",
   "author": "Mattias E. O. Andersson",
-  "repository": "github:Adelost/nodejs-typescript-boilerplate",
+  "repository": "github:Adelost/mnemonic-id",
   "homepage": "https://github.com/Adelost/mnemonic-id#readme",
   "keywords": [
     "id",

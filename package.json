@@ -15,15 +15,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "sideEffects": false,
-  "files": [
-    "dist/"
-  ],
   "scripts": {
     "clean": "rimraf dist dist-minified coverage tmp",
     "start": "node dist/index.js",
     "start-min": "node minified/index.js",
     "build": "tsc",
-    "build-dist": "npm run clean && npm run build",
+    "clean-build": "npm run clean && npm run build",
     "watch": "tsc -w",
     "minify": "webpack --display-modules",
     "test": "jest",

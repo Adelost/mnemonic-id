@@ -20,50 +20,58 @@ interface IdOpts {
 }
 
 /** Returns id with ≈ 10^6 permutations */
-export function getName(opts?: IdOpts): string {
+export function createNameId(opts?: IdOpts): string {
   opts = {
     adj: 2,
     subject: true,
     ...opts,
   };
-  return getCustom(opts);
+  return createCustomId(opts);
 }
 
 /** Returns id with ≈ 10^4 permutations */
-export function getShortName(opts = {}): string {
+export function createShortNameId(opts = {}): string {
   opts = {
     adj: 1,
     subject: true,
     ...opts,
   };
-  return getCustom(opts);
+  return createCustomId(opts);
 }
 
 /** Returns id with ≈ 10^6 permutations */
-export function getAction(opts = {}): string {
+export function createActionId(opts = {}): string {
   opts = {
     adj: 1,
     verb: true,
     object: true,
     ...opts,
   };
-  return getCustom(opts);
+  return createCustomId(opts);
 }
 
 /** Returns id with ≈ 10^10 permutations */
-export function getStory(opts = {}): string {
+export function createStoryId(opts = {}): string {
   opts = {
-    adj: 2,
+    adj: 1,
     subject: true,
     verb: true,
     object: true,
     ...opts,
   };
-  return getCustom(opts);
+  return createCustomId(opts);
+}
+
+/** Returns id with ≈ 10^14 permutations */
+export function createLongStoryId(opts = {}): string {
+  return createStoryId({
+    adj: 2,
+    ...opts,
+  });
 }
 
 /** Returns customized id based on options */
-export function getCustom(opts: IdOpts = {}): string {
+export function createCustomId(opts: IdOpts = {}): string {
   const _opts = {
     adj: 0,
     subject: false,
@@ -86,7 +94,7 @@ export function getCustom(opts: IdOpts = {}): string {
   }
   if (_opts.object) {
     parts.push(
-      getCustom({
+      createCustomId({
         adj: _opts.adj,
         subject: true,
         delimiter: _opts.delimiter,
@@ -94,18 +102,18 @@ export function getCustom(opts: IdOpts = {}): string {
     );
   }
   if (_opts.idSuffix) {
-    const id = getHashId(_opts.idSuffix);
+    const id = createId(_opts.idSuffix);
     parts.push(id);
   }
   if (_opts.numberSuffix) {
-    const id = getNumberId(_opts.numberSuffix);
+    const id = createNumberId(_opts.numberSuffix);
     parts.push(id);
   }
   return parts.join(_opts.delimiter);
 }
 
 /** Returns a customized id based on options */
-export function getHashId(length: number): string {
+export function createId(length: number): string {
   const choices = 'ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz0123456789';
   let out = '';
   for (let i = 0; i < length; i += 1) {
@@ -115,7 +123,7 @@ export function getHashId(length: number): string {
 }
 
 /** Returns a customized id based on options */
-export function getNumberId(length: number): string {
+export function createNumberId(length: number): string {
   const choices = '0123456789';
   let out = '';
   if (length > 0) {

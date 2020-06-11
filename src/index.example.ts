@@ -1,5 +1,9 @@
+import { createNameId, createStoryId } from './index';
+
+console.log(createNameId()); // -> hot-splendid-duck
+console.log(createStoryId()); // -> fluffy-dragon-fly-nervous-pug
+
 import * as mnemonicId from './index';
 
-for (let i = 0; i < 5; i += 1) {
-  console.log(mnemonicId.getNumberId(1));
-}
+console.log(mnemonicId.createNameId()); // -> ancient-sour-fish
+console.log(mnemonicId.createStoryId()); // -> neat-warthog-erase-evil-rat

@@ -5,10 +5,28 @@ Library to generate easy to remember, and sometimes entertaining, human readable
 Inspired by major mnemonic system:
 https://en.wikipedia.org/wiki/Mnemonic_major_system
 
+## Usage
+
+
+```
+import { createNameId, createStoryId } from 'mnemonic-id';
+
+createNameId(); // -> hot-splendid-duck
+createStoryId(); // -> neat-warthog-erase-evil-rat
+```
+
+or 
+
+```
+const mnemonicId = require('mnemonic-id');
+
+mnemonicId.createNameId(); // -> spicy-new-skunk
+mnemonicId.createStoryId(); // -> fluffy-dragon-fly-nervous-pug
+```
 
 ## Examples
 
-### getName()
+### createNameId()
 
 Generates ids that strike a balance between conciseness and number of permutation.
 
@@ -22,7 +40,7 @@ ancient-sour-fish
 wicked-mean-rattlesnake
 ```
 
-### getShortName()
+### createShortNameId()
 
 Generates concise ids for when only a small number of instances is needed.
 
@@ -36,7 +54,7 @@ happy-eagle
 giant-turkey
 ```
 
-### getAction()
+### createActionId()
 
 Generates action-oriented ids.
 
@@ -50,7 +68,7 @@ bury-old-walrus
 love-pretty-sheep
 ```
 
-### getStory()
+### createStoryId()
 
 Generates story-oriented ids.
 
@@ -64,12 +82,50 @@ modern-fox-lull-shy-dog
 cuddly-bird-defy-moody-badger
 ```
 
-### getCustom({...})
+### createLongStoryId()
+
+Generates vivid story-oriented ids.
+
+≈ 10^14 permutations
+
+Output:
+```
+wicked-evil-eel-help-horrible-pretty-hamster
+neat-warthog-erase-evil-rat
+modern-fox-lull-shy-dog
+cuddly-bird-defy-moody-badger
+```
+
+### createId(length: number)
+
+Generates id of given length
+
+Output (length = 8):
+```
+jgCe7BQT
+tO4xCM7i
+ZDMrOk33
+BsktPStU
+```
+
+### createNumberId(length: number)
+
+Generates number of given length
+
+Output (length = 4):
+```
+7175
+2233
+5368
+6678
+```
+
+### createCustomId({...})
 
 If neither of the predefined formats fits your use case, 
 the output is fully customizable through the `options` parameter:
 ```
-getCustom({
+createCustomId({
       adj: 2,
       subject: true,
       verb: true,

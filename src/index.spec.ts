@@ -1,16 +1,19 @@
 import * as mnemonicId from './index';
 
 describe('mnemonicId', () => {
-  describe('random', () => {
-    it('returns id of correct length', () => {
-      expect(mnemonicId.getName()).toMatch(/^\w+-\w+-\w+$/);
-      expect(mnemonicId.getShortName()).toMatch(/^\w+-\w+$/);
-      expect(mnemonicId.getAction()).toMatch(/^\w+-\w+-\w+$/);
-      expect(mnemonicId.getStory()).toMatch(/^\w+-\w+-\w+-\w+-\w+-\w+-\w+$/);
-      expect(mnemonicId.getCustom({ idSuffix: 10 })).toMatch(/^\w{10}$/);
-      expect(mnemonicId.getCustom({ numberSuffix: 10 })).toMatch(/^\d{10}$/);
+  describe('createId methods', () => {
+    it('returns id in correct format', () => {
+      expect(mnemonicId.createNameId()).toMatch(/^\w+-\w+-\w+$/);
+      expect(mnemonicId.createShortNameId()).toMatch(/^\w+-\w+$/);
+      expect(mnemonicId.createActionId()).toMatch(/^\w+-\w+-\w+$/);
+      expect(mnemonicId.createStoryId()).toMatch(/^\w+-\w+-\w+-\w+-\w+$/);
+      expect(mnemonicId.createLongStoryId()).toMatch(/^\w+-\w+-\w+-\w+-\w+-\w+-\w+$/);
+      expect(mnemonicId.createCustomId({ idSuffix: 10 })).toMatch(/^\w{10}$/);
+      expect(mnemonicId.createCustomId({ numberSuffix: 10 })).toMatch(/^\d{10}$/);
+      expect(mnemonicId.createId(10)).toMatch(/^\w{10}$/);
+      expect(mnemonicId.createNumberId(10)).toMatch(/^\d{10}$/);
       expect(
-        mnemonicId.getCustom({
+        mnemonicId.createCustomId({
           adj: 2,
           subject: true,
           verb: true,

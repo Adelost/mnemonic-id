@@ -3,6 +3,7 @@ import * as mnemonicId from './index';
 describe('mnemonicId', () => {
   describe('createId methods', () => {
     it('returns id in correct format', () => {
+      expect(mnemonicId.createNounId()).toMatch(/^\w+$/);
       expect(mnemonicId.createNameId()).toMatch(/^\w+-\w+$/);
       expect(mnemonicId.createLongNameId()).toMatch(/^\w+-\w+-\w+$/);
       expect(mnemonicId.createUniqueNameId()).toMatch(/^\w+-\w+-\w+$/);

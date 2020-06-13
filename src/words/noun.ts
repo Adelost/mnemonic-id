@@ -9,10 +9,12 @@ badger
 bat
 bear
 beaver
+bedbug
 bird
 blobfish
 blowfish
 bobcat
+buffalo
 bulldog
 bullfrog
 bumblebee
@@ -39,11 +41,12 @@ dragonfly
 duck
 dugong
 eagle
-earwig
 eel
 elephant
+elk
 emu
 falcon
+ferret
 fireant
 fish
 flamingo
@@ -54,6 +57,8 @@ gecko
 giraffe
 goat
 goose
+gopher
+gorilla
 grasshopper
 hamster
 hedgehog
@@ -77,6 +82,7 @@ liger
 lion
 lionfish
 lizard
+llama
 lynx
 manatee
 mantis
@@ -97,11 +103,13 @@ owl
 panda
 panther
 parrot
+peacock
 pelican
 penguin
 pig
 piranha
 platypus
+pony
 porcupine
 pug
 puma
@@ -122,6 +130,7 @@ skunk
 sloth
 snail
 snake
+spider
 squid
 squirrel
 starfish
@@ -129,9 +138,10 @@ stingray
 swan
 termite
 tiger
-treefrog
+toad
 turkey
 turtle
+unicorn
 vampirebat
 vulture
 walrus

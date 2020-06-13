@@ -1,151 +1,104 @@
 # Mnemonic id
 
 Library to generate easy to remember, and sometimes entertaining, human readable ids.
+```
+createStoryId(); // -> eloquent-beaver-quote-average-fish
+```
 
-Inspired by major mnemonic system:
-https://en.wikipedia.org/wiki/Mnemonic_major_system
+Partly inspired by Docker name generator and [major mnemonic system](https://en.wikipedia.org/wiki/Mnemonic_major_system#Example_words).
+
+## Features
+* Dictionary of approximate 150 nouns (animals), 200 verbs, 500 adjectives
+* Profanity free
+* Customizable id generation 
+* TypeScript annotated API
+
+## Install
+
+```
+$ npm install mnemonic-id
+```
+
 
 ## Usage
 
-
+Import in either way that suits your environment:
 ```
-import { createNameId, createStoryId } from 'mnemonic-id';
-
-createNameId(); // -> hot-splendid-duck
-createStoryId(); // -> neat-warthog-erase-evil-rat
+import { createNameId } from 'mnemonic-id';
+createNameId();
 ```
-
-or 
-
+```
+import * as mnemonicId from 'mnemonic-id';
+mnemonicId.createNameId();
+```
 ```
 const mnemonicId = require('mnemonic-id');
-
-mnemonicId.createNameId(); // -> spicy-new-skunk
-mnemonicId.createStoryId(); // -> fluffy-dragon-fly-nervous-pug
+mnemonicId.createNameId();
 ```
 
-## Examples
-
-### createNameId()
-
-Generates ids that strike a balance between conciseness and number of permutation.
-
-≈ 10^6 permutations
-
-Output:
+Then select one of the existing id formats:
 ```
-hot-splendid-duck
-spicy-new-skunk
-ancient-sour-fish
-wicked-mean-rattlesnake
+createNounId();         // -> narwhal  (≈ 10^2 permutations)
+createNameId();         // -> hungry-hippo  (≈ 10^5 permutations)
+createLongNameId();     // -> hot-splendid-duck  (≈ 10^7 permutations)
+createUniqueNameId();   // -> gallant-jellyfish-QkCHmf  (≈ 10^14 permutations)
+createQuestId();        // -> find-unknown-dinosaur  (≈ 10^7 permutations)
+createStoryId();        // -> awesome-chipmunk-banish-evil-rat  (≈ 10^12 permutations)
+createLongStoryId();    // -> wicked-evil-eel-help-horrible-pretty-hamster  (≈ 10^17 permutations)
+createNumberId(10);     // -> 6941634647  (= 10^10 - 10^9 permutations)
+createId(10);           // -> uXOGTUiOoD  (= 40^10 ≈ 10^16 permutations)
 ```
 
-### createShortNameId()
-
-Generates concise ids for when only a small number of instances is needed.
-
-≈ 10^4 permutations
-
-Output:
-```
-massive-bulldog
-thin-mouse
-happy-eagle
-giant-turkey
-```
-
-### createActionId()
-
-Generates action-oriented ids.
-
-≈ 10^6 permutationsW
-
-Output:
-```
-marry-odd-dog
-fry-splendid-elephant
-bury-old-walrus
-love-pretty-sheep
-```
-
-### createStoryId()
-
-Generates story-oriented ids.
-
-≈ 10^10 permutations
-
-Output:
-```
-fluffy-dragon-fly-nervous-pug
-neat-warthog-erase-evil-rat
-modern-fox-lull-shy-dog
-cuddly-bird-defy-moody-badger
-```
-
-### createLongStoryId()
-
-Generates vivid story-oriented ids.
-
-≈ 10^14 permutations
-
-Output:
-```
-wicked-evil-eel-help-horrible-pretty-hamster
-neat-warthog-erase-evil-rat
-modern-fox-lull-shy-dog
-cuddly-bird-defy-moody-badger
-```
-
-### createId(length: number)
-
-Generates id of given length
-
-Output (length = 8):
-```
-jgCe7BQT
-tO4xCM7i
-ZDMrOk33
-BsktPStU
-```
-
-### createNumberId(length: number)
-
-Generates number of given length
-
-Output (length = 4):
-```
-7175
-2233
-5368
-6678
-```
-
-### createCustomId({...})
-
-If neither of the predefined formats fits your use case, 
-the output is fully customizable through the `options` parameter:
+Or customize your own:
 ```
 createCustomId({
-      adj: 2,
-      subject: true,
-      verb: true,
-      object: true,
-      delimiter: '_',
-      idSuffix: 6,
-      numberSuffix: 4,
-    })
-);
-
-```
-Output:
-```
-proud_evil_dolphin_meet_tidy_fluffy_crab_yO2vLY_3331
-orange_spicy_horse_bite_tiny_calm_liger_NvnhdC_1669
-nasty_big_rabbit_lick_fresh_cold_ape_lPz4kC_8196
-fresh_wicked_lizard_chain_horrible_sour_fox_rKTiYL_3454
+  adjectives: 2,
+  subject: true,
+  verb: true,
+  object: true,
+  numberSuffix: 4,
+  idSuffix: 6,
+  delimiter: '_',
+  capitalize: true
+}); // -> Talented_Bold_Pig_Hunt_Brawny_Supreme_Bumblebee_6343_VQ5EAZ
 ```
 
-The `options` object can also be used with any other method to override default behavior. 
+Most existing formats can also be customized:
+
+```
+createNameId({adjectives: 3, capitalize: true}); // -> Ordinary-Cuddly-Laughing-Squid
+```
+
+## Options
+
+Description of options:
+
+```
+/** Number of adjectives given to object/subject */
+adjectives?: number;
+/** Creates subject in id sentence */
+subject?: boolean;
+/** Creates verb in id sentence */
+verb?: boolean;
+/** Creates object in id sentence */
+object?: boolean;
+/** Creates number of given length at end of id sentence */
+numberSuffix?: number;
+/** Creates id of given length at end of id sentence */
+idSuffix?: number;
+/** Delimiter to be used in id sentence */
+delimiter?: string;
+/** Capitalize each word in sentence */
+capitalize?: boolean;
+```
+
+# Alternatives
+
+Similar libraries:
+
+* [human-id](https://www.npmjs.com/package/human-id)
+* [project-name-generator](https://www.npmjs.com/package/project-name-generator)
+* [unique-names-generator](https://www.npmjs.com/package/unique-names-generator)
 
 ## License
 

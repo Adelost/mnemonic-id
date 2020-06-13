@@ -1,79 +1,85 @@
 import verbs from './words/verbs';
-import animals from './words/animals';
+import animals from './words/noun';
 import adjectives from './words/adjectives';
 
 interface IdOpts {
   /** Number of adjectives given to object/subject */
-  adj?: number;
+  adjectives?: number;
   /** Creates subject in id sentence */
   subject?: boolean;
   /** Creates verb in id sentence */
   verb?: boolean;
   /** Creates object in id sentence */
   object?: boolean;
-  /** Delimiter to be used in id sentence */
-  delimiter?: string;
+  /** Creates number of given length at end of id sentence */
+  numberSuffix?: number;
   /** Creates id of given length at end of id sentence */
   idSuffix?: number;
-  /** Creates combination of numbers of given length at end of id sentence */
-  numberSuffix?: number;
+  /** Delimiter to be used in id sentence */
+  delimiter?: string;
+  /** Capitalize each word in sentence */
+  capitalize?: boolean;
+}
+
+/** Returns id with ≈ 10^4 permutations (e.g. "cool-dragonfly") */
+export function createNameId(opts: IdOpts = {}): string {
+  return createCustomId({
+    adjectives: 1,
+    subject: true,
+    ...opts,
+  });
+}
+
+/** Returns id with ≈ 10^6 permutations (e.g. "hot-splendid-duck") */
+export function createLongNameId(opts?: IdOpts): string {
+  return createCustomId({
+    adjectives: 2,
+    subject: true,
+    ...opts,
+  });
+}
+
+/** Returns id with ≈ 10^14 permutations (e.g. "dull-dugong-8x4s0K") */
+export function createUniqueNameId(opts: IdOpts = {}): string {
+  return createNameId({
+    idSuffix: 6,
+    ...opts,
+  });
 }
 
 /** Returns id with ≈ 10^6 permutations */
-export function createNameId(opts?: IdOpts): string {
-  opts = {
-    adj: 2,
-    subject: true,
-    ...opts,
-  };
-  return createCustomId(opts);
-}
-
-/** Returns id with ≈ 10^4 permutations */
-export function createShortNameId(opts = {}): string {
-  opts = {
-    adj: 1,
-    subject: true,
-    ...opts,
-  };
-  return createCustomId(opts);
-}
-
-/** Returns id with ≈ 10^6 permutations */
-export function createActionId(opts = {}): string {
-  opts = {
-    adj: 1,
+export function createQuestId(opts: IdOpts = {}): string {
+  return createCustomId({
+    adjectives: 1,
     verb: true,
     object: true,
     ...opts,
-  };
-  return createCustomId(opts);
+  });
 }
 
 /** Returns id with ≈ 10^10 permutations */
-export function createStoryId(opts = {}): string {
-  opts = {
-    adj: 1,
+export function createStoryId(opts: IdOpts = {}): string {
+  return createCustomId({
+    adjectives: 1,
     subject: true,
     verb: true,
     object: true,
     ...opts,
-  };
-  return createCustomId(opts);
+  });
 }
 
 /** Returns id with ≈ 10^14 permutations */
-export function createLongStoryId(opts = {}): string {
+export function createLongStoryId(opts: IdOpts = {}): string {
   return createStoryId({
-    adj: 2,
+    adjectives: 2,
     ...opts,
   });
 }
 
 /** Returns customized id based on options */
 export function createCustomId(opts: IdOpts = {}): string {
-  const _opts = {
-    adj: 0,
+  opts = {
+    adjectives: 0,
     subject: false,
     verb: false,
     object: false,
@@ -82,37 +88,51 @@ export function createCustomId(opts: IdOpts = {}): string {
     idSuffix: 0,
     ...opts,
   };
-  const parts = [];
-  if (_opts.subject) {
-    for (let i = 0; i < _opts.adj; i += 1) {
-      parts.push(randomFromList(adjectives));
+  let parts = [];
+  if (opts.subject) {
+    if (opts.adjectives) {
+      for (let i = 0; i < opts.adjectives; i += 1) {
+        parts.push(randomFromList(adjectives));
+      }
     }
     parts.push(randomFromList(animals));
   }
-  if (_opts.verb) {
+  if (opts.verb) {
     parts.push(randomFromList(verbs));
   }
-  if (_opts.object) {
+  if (opts.object) {
     parts.push(
       createCustomId({
-        adj: _opts.adj,
+        adjectives: opts.adjectives,
         subject: true,
-        delimiter: _opts.delimiter,
+        delimiter: opts.delimiter,
+        capitalize: opts.capitalize,
       }),
     );
   }
-  if (_opts.idSuffix) {
-    const id = createId(_opts.idSuffix);
+  if (opts.numberSuffix) {
+    const id = createNumberId(opts.numberSuffix);
     parts.push(id);
   }
-  if (_opts.numberSuffix) {
-    const id = createNumberId(_opts.numberSuffix);
+  if (opts.idSuffix) {
+    const id = createId(opts.idSuffix);
     parts.push(id);
   }
-  return parts.join(_opts.delimiter);
+  if (opts.capitalize) {
+    parts = parts.map(capitalize);
+  }
+  return parts.join(opts.delimiter);
 }
 
-/** Returns a customized id based on options */
+/** Returns id with ≈ 10^2 permutations (e.g. "narwhal") */
+export function createNounId(opts: IdOpts = {}): string {
+  return createCustomId({
+    subject: true,
+    ...opts,
+  });
+}
+
+/** Returns id of given length */
 export function createId(length: number): string {
   const choices = 'ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz0123456789';
   let out = '';
@@ -122,7 +142,7 @@ export function createId(length: number): string {
   return out;
 }
 
-/** Returns a customized id based on options */
+/** Returns number of given length */
 export function createNumberId(length: number): string {
   const choices = '0123456789';
   let out = '';
@@ -141,4 +161,8 @@ function randomFromList<T>(list: T[]): T {
 
 function randomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min) + min);
+}
+
+function capitalize(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1);
 }

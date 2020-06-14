@@ -12,7 +12,7 @@ Partly inspired by Docker name generator and [major mnemonic system](https://en.
 
 ## Highlights
 * Dictionary of approximate 150 nouns (animals), 200 verbs, 500 adjectives.
-* Deterministic size, with max length of 10 for nouns, 8 for verbs and adjectives. 
+* Deterministic id size, with max word length of 10 for nouns, 8 for verbs and adjectives. 
 * Customizable id generation.
 * TypeScript annotated API.
 * Slim package size with no dependencies.

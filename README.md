@@ -1,7 +1,7 @@
 # Mnemonic id
 
-![Coverage Status](https://coveralls.io/repos/github/Adelost/mnemonic-id/badge.svg?branch=master)
-![TypeScript-ready](https://img.shields.io/npm/types/mnemonic-id.svg)
+[![Coverage Status](https://coveralls.io/repos/github/Adelost/mnemonic-id/badge.svg?branch=master)](https://coveralls.io/github/Adelost/mnemonic-id?branch=master)
+![npm type definitions](https://img.shields.io/npm/types/mnemonic-id)
 
 Library to generate easy to remember, and sometimes entertaining, human readable ids.
 ```ts

@@ -4,7 +4,7 @@
 ![TypeScript-ready](https://img.shields.io/npm/types/mnemonic-id.svg)
 
 Library to generate easy to remember, and sometimes entertaining, human readable ids.
-```js
+```ts
 createStoryId(); // -> awesome-chipmunk-banish-evil-rat
 ```
 
@@ -27,22 +27,22 @@ $ npm install mnemonic-id
 ## Usage
 
 Import in either way that suits your environment:
-```js
+```ts
 import { createNameId } from 'mnemonic-id';
 createNameId();
 ```
-```js
+```ts
 import * as mnemonicId from 'mnemonic-id';
 mnemonicId.createNameId();
 ```
-```js
+```ts
 const mnemonicId = require('mnemonic-id');
 mnemonicId.createNameId();
 ```
 
 Then select one of the existing id formats:
 
-```js
+```ts
 /** Format "noun", ≈ 10^2 permutations, 10 max length */
 createNounId(); // -> narwhal
 
@@ -72,7 +72,7 @@ createId(10); // -> uXOGTUiOoD  (= 40^10 ≈ 10^16 permutations)
 ```
 
 Or customize your own:
-```js
+```ts
 createCustomId({
   adjectives: 2,
   subject: true,
@@ -87,7 +87,7 @@ createCustomId({
 
 Most existing formats can also be customized:
 
-```js
+```ts
 createNameId({
   adjectives: 3, 
   capitalize: true
@@ -99,30 +99,32 @@ createNameId({
 
 Description of options:
 
-```
-/** Number of adjectives given to object/subject */
-adjectives?: number;
-
-/** Creates subject in id sentence */
-subject?: boolean;
-
-/** Creates verb in id sentence */
-verb?: boolean;
-
-/** Creates object in id sentence */
-object?: boolean;
-
-/** Creates number of given length at end of id sentence */
-numberSuffix?: number;
-
-/** Creates id of given length at end of id sentence */
-idSuffix?: number;
-
-/** Delimiter to be used in id sentence */
-delimiter?: string;
-
-/** Capitalize each word in sentence */
-capitalize?: boolean;
+```ts
+interface IdOpts {
+  /** Number of adjectives given to object/subject */
+  adjectives?: number;
+  
+  /** Creates subject in id sentence */
+  subject?: boolean;
+  
+  /** Creates verb in id sentence */
+  verb?: boolean;
+  
+  /** Creates object in id sentence */
+  object?: boolean;
+  
+  /** Creates number of given length at end of id sentence */
+  numberSuffix?: number;
+  
+  /** Creates id of given length at end of id sentence */
+  idSuffix?: number;
+  
+  /** Delimiter to be used in id sentence */
+  delimiter?: string;
+  
+  /** Capitalize each word in sentence */
+  capitalize?: boolean;
+}
 ```
 
 # Alternatives

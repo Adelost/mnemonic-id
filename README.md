@@ -43,31 +43,31 @@ mnemonicId.createNameId();
 Then select one of the existing id formats:
 
 ```ts
-/** Format "noun", ≈ 10^2 permutations, 10 max length */
+/** "noun", ≈ 10^2 permutations, 10 max length */
 createNounId(); // -> narwhal
 
-/** Format "adj+noun", ≈ 10^5 permutations, 19 max length */
+/** "adj+noun", ≈ 10^5 permutations, 19 max length */
 createNameId(); // -> hungry-hippo
 
-/** Format "adj+adj+noun", ≈ 10^6 permutations, 28 max length */
+/** "adj+adj+noun", ≈ 10^6 permutations, 28 max length */
 createLongNameId(); // -> hot-splendid-duck
 
-/** Format "adj+noun+id", ≈ 10^14 permutations, 26 max length */
+/** "adj+noun+id", ≈ 10^14 permutations, 26 max length */
 createUniqueNameId(); // -> dull-dugong-QkCHmf
 
-/** Format "verb+adj+noun", ≈ 10^6 permutations, 28 max length */
+/** "verb+adj+noun", ≈ 10^6 permutations, 28 max length */
 createQuestId(); // -> find-pretty-sheep
 
-/** Format "adj+noun+verb+adj+noun", ≈ 10^12 permutations, 48 max length */
+/** "adj+noun+verb+adj+noun", ≈ 10^12 permutations, 48 max length */
 createStoryId(); // -> eloquent-beaver-quote-unknown-dinosaur
 
-/** Format "adj+adj+noun+verb+adj+adj+noun", ≈ 10^17 permutations, 64 max length */
+/** "adj+adj+noun+verb+adj+adj+noun", ≈ 10^17 permutations, 64 max length */
 createLongStoryId(); // -> wicked-evil-eel-help-horrible-pretty-hamster
 
-/** Format "number" of given length, length^10 - length^9 permutations */
+/** "number" of given length, length^10 - length^9 permutations */
 createNumberId(10); // -> 6941634647  (= 10^10-10^9 permutations)
 
-/** Format "id" of given length, = 40^length permutations */
+/** "id" of given length, = 40^length permutations */
 createId(10); // -> uXOGTUiOoD  (= 40^10 ≈ 10^16 permutations)
 ```
 

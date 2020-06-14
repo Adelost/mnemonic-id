@@ -161,6 +161,7 @@ shop
 slay
 smash
 smell
+snuggle
 soak
 study
 suffer

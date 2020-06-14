@@ -21,7 +21,15 @@ interface IdOpts {
   capitalize?: boolean;
 }
 
-/** Returns id with ≈ 10^4 permutations (e.g. "cool-dragonfly") */
+/** Returns id in format "noun" (e.g. "narwhal"), ≈ 10^2 permutations, 10 max length */
+export function createNounId(opts: IdOpts = {}): string {
+  return createCustomId({
+    subject: true,
+    ...opts,
+  });
+}
+
+/** Returns id in format "adj+noun" (e.g. "hungry-hippo"), ≈ 10^5 permutations, 19 max length */
 export function createNameId(opts: IdOpts = {}): string {
   return createCustomId({
     adjectives: 1,
@@ -30,7 +38,7 @@ export function createNameId(opts: IdOpts = {}): string {
   });
 }
 
-/** Returns id with ≈ 10^6 permutations (e.g. "hot-splendid-duck") */
+/** Returns id in format "adj+adj+noun" (e.g. "hungry-hippo"), ≈ 10^6 permutations, 28 max length */
 export function createLongNameId(opts?: IdOpts): string {
   return createCustomId({
     adjectives: 2,
@@ -39,7 +47,7 @@ export function createLongNameId(opts?: IdOpts): string {
   });
 }
 
-/** Returns id with ≈ 10^14 permutations (e.g. "dull-dugong-8x4s0K") */
+/** Returns id in format "adj+noun+id" (e.g. "dull-dugong-QkCHmf"), ≈ 10^14 permutations, 26 max length */
 export function createUniqueNameId(opts: IdOpts = {}): string {
   return createNameId({
     idSuffix: 6,
@@ -47,7 +55,7 @@ export function createUniqueNameId(opts: IdOpts = {}): string {
   });
 }
 
-/** Returns id with ≈ 10^6 permutations */
+/** Returns id in format "verb+adj+noun" (e.g. "find-pretty-sheep"), ≈ 10^6 permutations, 28 max length */
 export function createQuestId(opts: IdOpts = {}): string {
   return createCustomId({
     adjectives: 1,
@@ -57,7 +65,7 @@ export function createQuestId(opts: IdOpts = {}): string {
   });
 }
 
-/** Returns id with ≈ 10^10 permutations */
+/** Returns id in format "adj+noun+verb+adj+noun" (e.g. "eloquent-beaver-quote-unknown-dinosaur"), ≈ 10^10 permutations, 48 max length */
 export function createStoryId(opts: IdOpts = {}): string {
   return createCustomId({
     adjectives: 1,
@@ -68,7 +76,8 @@ export function createStoryId(opts: IdOpts = {}): string {
   });
 }
 
-/** Returns id with ≈ 10^14 permutations */
+/** Returns id in format "adj+adj+noun+verb+adj+adj+noun" (e.g. "wicked-evil-eel-help-horrible-pretty-hamster"), ≈ 10^14 permutations,
+ * 64 max length */
 export function createLongStoryId(opts: IdOpts = {}): string {
   return createStoryId({
     adjectives: 2,
@@ -76,7 +85,30 @@ export function createLongStoryId(opts: IdOpts = {}): string {
   });
 }
 
-/** Returns customized id based on options */
+/** Returns number of given length, = length^10-length^9 permutations */
+export function createNumberId(length: number): string {
+  const choices = '0123456789';
+  let out = '';
+  if (length > 0) {
+    out += choices[randomInt(1, choices.length)];
+  }
+  for (let i = 1; i < length; i += 1) {
+    out += choices[randomInt(0, choices.length)];
+  }
+  return out;
+}
+
+/** Returns id of given length, = 40^x permutations */
+export function createId(length: number): string {
+  const choices = 'ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz0123456789';
+  let out = '';
+  for (let i = 0; i < length; i += 1) {
+    out += choices[randomInt(0, choices.length)];
+  }
+  return out;
+}
+
+/** Returns customized id based on given options */
 export function createCustomId(opts: IdOpts = {}): string {
   opts = {
     adjectives: 0,
@@ -122,37 +154,6 @@ export function createCustomId(opts: IdOpts = {}): string {
     parts = parts.map(capitalize);
   }
   return parts.join(opts.delimiter);
-}
-
-/** Returns id with ≈ 10^2 permutations (e.g. "narwhal") */
-export function createNounId(opts: IdOpts = {}): string {
-  return createCustomId({
-    subject: true,
-    ...opts,
-  });
-}
-
-/** Returns id of given length */
-export function createId(length: number): string {
-  const choices = 'ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz0123456789';
-  let out = '';
-  for (let i = 0; i < length; i += 1) {
-    out += choices[randomInt(0, choices.length)];
-  }
-  return out;
-}
-
-/** Returns number of given length */
-export function createNumberId(length: number): string {
-  const choices = '0123456789';
-  let out = '';
-  if (length > 0) {
-    out += choices[randomInt(1, choices.length)];
-  }
-  for (let i = 1; i < length; i += 1) {
-    out += choices[randomInt(0, choices.length)];
-  }
-  return out;
 }
 
 function randomFromList<T>(list: T[]): T {

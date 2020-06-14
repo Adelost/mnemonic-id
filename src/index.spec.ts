@@ -24,6 +24,8 @@ describe('mnemonicId', () => {
           capitalize: true,
         }),
       ).toMatch(/^\w+_\w+_\w+_\w+_\w+_\w+_\w+_\d{4}_\w{6}/);
+      expect(mnemonicId.createCustomId()).toMatch('');
+      expect(mnemonicId.createNumberId(-1)).toMatch('');
     });
   });
 });

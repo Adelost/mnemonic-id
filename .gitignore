@@ -12,6 +12,9 @@ coverage/
 tmp/
 .local/
 
+# CI
+.coveralls.yml
+
 # Optional
 # By standard package-lock should be commited but feel free to
 # ignore lock file if you do not require version locking and

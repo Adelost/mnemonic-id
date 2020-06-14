@@ -59,7 +59,6 @@ goat
 goose
 gopher
 gorilla
-grasshopper
 hamster
 hedgehog
 hippo
@@ -117,7 +116,6 @@ quail
 rabbit
 racoon
 rat
-rattlesnake
 rhino
 robin
 scorpion

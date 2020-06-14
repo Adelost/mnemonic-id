@@ -110,6 +110,7 @@ interface IdOpts {
   /** Creates object in id sentence */
   object?: boolean;
   /** Creates number of given length at end of id sentence */
+  numberSuffix?: number;
   /** Creates id of given length at end of id sentence */
   idSuffix?: number;
   /** Delimiter to be used in id sentence */

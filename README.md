@@ -4,7 +4,7 @@
 ![TypeScript-ready](https://img.shields.io/npm/types/mnemonic-id.svg)
 
 Library to generate easy to remember, and sometimes entertaining, human readable ids.
-```
+```js
 createStoryId(); // -> awesome-chipmunk-banish-evil-rat
 ```
 
@@ -19,7 +19,7 @@ Partly inspired by Docker name generator and [major mnemonic system](https://en.
 
 ## Install
 
-```
+```console
 $ npm install mnemonic-id
 ```
 
@@ -27,22 +27,22 @@ $ npm install mnemonic-id
 ## Usage
 
 Import in either way that suits your environment:
-```
+```js
 import { createNameId } from 'mnemonic-id';
 createNameId();
 ```
-```
+```js
 import * as mnemonicId from 'mnemonic-id';
 mnemonicId.createNameId();
 ```
-```
+```js
 const mnemonicId = require('mnemonic-id');
 mnemonicId.createNameId();
 ```
 
 Then select one of the existing id formats:
 
-```
+```js
 /** Format "noun", ≈ 10^2 permutations, 10 max length */
 createNounId(); // -> narwhal
 
@@ -72,7 +72,7 @@ createId(10); // -> uXOGTUiOoD  (= 40^10 ≈ 10^16 permutations)
 ```
 
 Or customize your own:
-```
+```js
 createCustomId({
   adjectives: 2,
   subject: true,
@@ -87,7 +87,7 @@ createCustomId({
 
 Most existing formats can also be customized:
 
-```
+```js
 createNameId({
   adjectives: 3, 
   capitalize: true

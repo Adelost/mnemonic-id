@@ -103,25 +103,17 @@ Description of options:
 interface IdOpts {
   /** Number of adjectives given to object/subject */
   adjectives?: number;
-  
   /** Creates subject in id sentence */
   subject?: boolean;
-  
   /** Creates verb in id sentence */
   verb?: boolean;
-  
   /** Creates object in id sentence */
   object?: boolean;
-  
   /** Creates number of given length at end of id sentence */
-  numberSuffix?: number;
-  
   /** Creates id of given length at end of id sentence */
   idSuffix?: number;
-  
   /** Delimiter to be used in id sentence */
   delimiter?: string;
-  
   /** Capitalize each word in sentence */
   capitalize?: boolean;
 }

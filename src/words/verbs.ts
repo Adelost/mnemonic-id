@@ -40,7 +40,7 @@ copies
 covers
 crashes
 creates
-crosss
+crosses
 defeats
 defies
 delivers
